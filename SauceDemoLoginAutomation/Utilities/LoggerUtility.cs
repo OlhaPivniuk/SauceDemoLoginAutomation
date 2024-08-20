@@ -1,4 +1,6 @@
-﻿namespace SauceDemoLoginAutomation.Utilities
+﻿using System.Text;
+
+namespace SauceDemoLoginAutomation.Utilities
 {
     public static class LoggerUtility
     {
@@ -19,7 +21,11 @@
 
             Console.WriteLine(logMessage);
 
-            File.AppendAllText(logFilePath, logMessage + Environment.NewLine);
+            using (var streamWriter = new StreamWriter(logFilePath, true, Encoding.UTF8, 1))
+            {
+                streamWriter.WriteLine(logMessage);
+            }
         }
+
     }
 }

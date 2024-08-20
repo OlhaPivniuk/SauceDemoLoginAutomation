@@ -13,7 +13,7 @@ namespace SauceDemoLoginAutomation.PageObjects
         public LoginPageObject(IWebDriver driver)
         {
             _driver = driver;
-            _wait = new WebDriverWait(driver, TimeSpan.FromSeconds(5));
+            _wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
         }
 
         private IWebElement UsernameField => _driver.FindElement(By.CssSelector("#user-name"));
@@ -22,31 +22,60 @@ namespace SauceDemoLoginAutomation.PageObjects
         private IWebElement ErrorMessage => _driver.FindElement(By.CssSelector(".error-message-container.error"));
 
         public void OpenLoginPage() => _driver.Navigate().GoToUrl(_url);
+
+        public void InputUsername(string username)
+        {
+            _wait.Until(d => UsernameField.Displayed);
+            UsernameField.Clear();
+            UsernameField.SendKeys(username);
+        }
+
+        public void InputPassword(string password)
+        {
+            _wait.Until(d => PasswordField.Displayed);
+            PasswordField.Clear();
+            PasswordField.SendKeys(password);
+        }
+
         public void InputCredentials(UserCredentials credentials)
         {
-            UsernameField.SendKeys(credentials.Username);
-            PasswordField.SendKeys(credentials.Password);
+            InputUsername(credentials.Username);
+            InputPassword(credentials.Password);
         }
-        public void ClickLogin() => LoginButton.Click();
-        public string GetErrorMessage() => ErrorMessage.Text;
+
+        public void ClickLogin()
+        {
+            _wait.Until(d => LoginButton.Enabled);
+            LoginButton.Click();
+        }
+
+        public string GetErrorMessage()
+        {
+            _wait.Until(d => ErrorMessage.Displayed);
+            return ErrorMessage.Text;
+        }
+
         public string FetchDashboardTitle()
         {
             IWebElement DashboardTitle = _driver.FindElement(By.CssSelector(".app_logo"));
             return DashboardTitle.Text;
         }
+
         public void ClearAllFields()
         {
-            while (!UsernameField.GetAttribute("value").Equals(""))
-            {
-                UsernameField.SendKeys(Keys.Backspace);
-            }
-            ClearPasswordField();
+            ClearField("username");
+            ClearField("password");
         }
-        public void ClearPasswordField()
+
+        public void ClearField(string fieldName)
         {
-            while (!PasswordField.GetAttribute("value").Equals(""))
+            if (fieldName.ToLower() == "username")
             {
-                PasswordField.SendKeys(Keys.Backspace);
+                UsernameField.Clear();
+            }
+            else if (fieldName.ToLower() == "password")
+            {
+                PasswordField.Clear();
             }
         }
     }

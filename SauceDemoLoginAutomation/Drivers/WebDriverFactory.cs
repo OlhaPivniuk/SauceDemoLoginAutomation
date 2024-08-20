@@ -4,7 +4,7 @@ using OpenQA.Selenium.Firefox;
 
 namespace SauceDemoLoginAutomation.Drivers
 {
-    public static class DriverFactory
+    public static class WebDriverFactory
     {
         public static IWebDriver GetDriver(string browser)
         {
@@ -23,6 +23,11 @@ namespace SauceDemoLoginAutomation.Drivers
             }
             driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(5);
             return driver;
+        }
+
+        public static void QuitDriver(IWebDriver driver)
+        {
+            driver.Quit();
         }
     }
 }
