@@ -24,7 +24,7 @@ Provide parallel execution, add logging for tests and use Data Provider to param
 Please, add task description as README.md into your solution!
 
 **To perform the task use the various of additional options:**
-Test Automation tool: Selenium WebDriver;
+Test Automation tool: Selenium WebDriver; 
 Browsers: 1) Edge; 2) Firefox;
 Locators: CSS;
 Test Runner: xUnit;
