@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace SauceDemoLoginAutomation.Models
+﻿namespace SauceDemoLoginAutomation.Models
 {
     public class UserCredentials
     {

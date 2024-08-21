@@ -25,9 +25,5 @@ namespace SauceDemoLoginAutomation.Drivers
             return driver;
         }
 
-        public static void QuitDriver(IWebDriver driver)
-        {
-            driver.Quit();
-        }
     }
 }

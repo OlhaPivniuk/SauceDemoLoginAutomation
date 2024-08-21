@@ -1,5 +1,4 @@
 ﻿using SauceDemoLoginAutomation.Models;
-using Xunit;
 
 namespace SauceDemoLoginAutomation.Utilities
 {

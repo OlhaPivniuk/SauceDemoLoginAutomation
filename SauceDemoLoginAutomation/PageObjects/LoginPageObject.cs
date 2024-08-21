@@ -1,6 +1,5 @@
 ﻿using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
-using SauceDemoLoginAutomation.Models;
 
 namespace SauceDemoLoginAutomation.PageObjects
 {
@@ -35,12 +34,6 @@ namespace SauceDemoLoginAutomation.PageObjects
             _wait.Until(d => PasswordField.Displayed);
             PasswordField.Clear();
             PasswordField.SendKeys(password);
-        }
-
-        public void InputCredentials(UserCredentials credentials)
-        {
-            InputUsername(credentials.Username);
-            InputPassword(credentials.Password);
         }
 
         public void ClickLogin()

@@ -21,7 +21,7 @@ namespace SauceDemoLoginAutomation.Utilities
 
             Console.WriteLine(logMessage);
 
-            using (var streamWriter = new StreamWriter(logFilePath, true, Encoding.UTF8, 1))
+            using (var streamWriter = new StreamWriter(logFilePath, true, Encoding.UTF8))
             {
                 streamWriter.WriteLine(logMessage);
             }
